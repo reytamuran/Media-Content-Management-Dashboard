@@ -1,0 +1,8 @@
+// src/redux/store.js
+
+import { createStore } from 'redux';
+import mediaReducer from './reducers';
+
+const store = createStore(mediaReducer);
+
+export default store;

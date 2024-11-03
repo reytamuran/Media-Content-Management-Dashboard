@@ -1,0 +1,74 @@
+/* src/pages/ContentListing.css */
+
+.content-listing {
+    padding: 20px;
+  }
+  
+  .header-card,
+  .table-card {
+    margin-bottom: 20px;
+  }
+  
+  .content-listing h1 {
+    font-size: 24px;
+    margin: 0;
+  }
+  .add-content-button, .logout-button {
+    margin-right: 10px;
+    padding: 10px 15px;
+    color: white;
+    background-color: #007bff;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    text-decoration: none;
+  }
+  
+  .logout-button {
+    background-color: #dc3545;
+  }
+  
+  
+/* src/pages/ContentListing.css */
+.thumbnail {
+    width: 60px;
+    height: auto;
+    border-radius: 4px;
+  }
+  
+  
+  .view-details, .edit-content {
+    margin-right: 10px;
+    color: #007bff;
+    text-decoration: none;
+  }
+  
+  .view-details:hover, .edit-content:hover {
+    text-decoration: underline;
+  }
+  
+  /* Responsive Styles */
+@media (max-width: 768px) {
+  .content-listing {
+    padding: 10px;
+  }
+
+  .header-card, .table-card {
+    padding: 10px;
+  }
+
+  .content-listing h1 {
+    font-size: 20px;
+  }
+
+  /* Adjust button size for smaller screens */
+  .add-content-button, .logout-button {
+    padding: 6px 8px; /* Smaller padding */
+    font-size: 14px; /* Smaller font size */
+    margin: 5px 0; /* Stack buttons with space */
+    width: 100%; /* Full width on small screens */
+  }
+  .thumbnail {
+    width: 40px;
+  }
+}
