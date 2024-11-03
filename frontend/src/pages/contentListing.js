@@ -95,9 +95,16 @@ function ContentListing() {
       title: 'Thumbnail',
       dataIndex: 'thumbnail',
       key: 'thumbnail',
-      render: (text) => <img src={text} alt="thumbnail" className="thumbnail" />,
+      render: (text) => (
+        <img
+          src={text.startsWith('http') ? text : `http://localhost:5002${text}`} // Prefix only if not a URL
+          alt="thumbnail"
+          className="thumbnail"
+          style={{ width: '100px', height: 'auto' }}
+        />
+      ),
       responsive: ['lg'],
-    },
+    },    
     {
       title: 'Title',
       dataIndex: 'title',

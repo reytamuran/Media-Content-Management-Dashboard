@@ -106,13 +106,13 @@ function CreateEditContent() {
           onChange={handleFileChange}
           accept="image/*"
         />
-        {form.thumbnail && (
-          <img
-            src={`http://localhost:5002/uploads/${form.thumbnail}`} // Path to show the image
-            alt="Thumbnail"
-            style={{ width: '100px', height: 'auto' }}
-          />
-        )}
+   {form.thumbnail && (
+  <img
+    src={id ? form.thumbnail : URL.createObjectURL(form.thumbnail)}
+    alt="Thumbnail"
+    style={{ width: '100px', height: 'auto' }}
+  />
+)}
         <div>
           <button type="button" onClick={() => handleSubmit('Draft')}>Save as Draft</button>
           <button type="button" onClick={() => handleSubmit('Published')}>Publish</button>
