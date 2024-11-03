@@ -19,7 +19,7 @@ function DetailContent() {
   const handleDelete = async () => {
     await deleteMediaItem(id);
     dispatch(deleteItem(id));
-    navigate('/');  // Use navigate instead of history.push
+    navigate('/content-listing');  // Use navigate instead of history.push
   };
 
   if (!item) return <p>Loading...</p>;
