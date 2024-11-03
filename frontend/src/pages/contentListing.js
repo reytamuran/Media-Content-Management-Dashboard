@@ -13,15 +13,10 @@ import './contentListing.css';
 function ContentListing() {
   const dispatch = useDispatch();
   const items = useSelector(state => state.items);
-  const navigate = useNavigate();
   const [searchText, setSearchText] = useState('');
   const [searchedColumn, setSearchedColumn] = useState('');
   const searchInput = useRef(null);
 
-  const handleLogout = () => {
-    dispatch(logout());
-    navigate('/login');
-  };
 
   useEffect(() => {
     getMediaItems()
@@ -132,8 +127,8 @@ function ContentListing() {
       key: 'actions',
       render: (_, record) => (
         <Space size="middle">
-          <Link to={`/content/${record.key}`} className="view-details">View Details</Link>
-          <Link to={`/content/edit/${record.key}`} className="edit-content">Edit</Link>
+          <Link to={`/content/${record.id}`} className="view-details">View Details</Link>
+          <Link to={`/content/edit/${record.id}`} className="edit-content">Edit</Link>
         </Space>
       ),
     },
@@ -141,20 +136,6 @@ function ContentListing() {
 
   return (
     <div className="content-listing">
-      <Card className="header-card">
-        <Row justify="space-between" align="middle">
-          <Col>
-            <h1>Media Content</h1>
-          </Col>
-          <Col>
-            <Space>
-              <Link to="/content/new/" className="add-content-button">Add New Content</Link>
-              <Button onClick={handleLogout} className="logout-button">Logout</Button>
-            </Space>
-          </Col>
-        </Row>
-      </Card>
-
       <Card className="table-card">
         <Table columns={columns} dataSource={items} rowKey="id" />
       </Card>
