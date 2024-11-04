@@ -15,7 +15,7 @@ function Header() {
   const isLoginPage = location.pathname === '/login';
 
   const [drawerVisible, setDrawerVisible] = useState(false);
-  const [isMobile, setIsMobile] = useState(window.innerWidth <= 768);
+  const [isMobile, setIsMobile] = useState(window.innerWidth <= 631);
 
   const handleLogout = () => {
     dispatch(logout());
@@ -35,6 +35,7 @@ function Header() {
     const handleResize = () => {
       const isMobileScreen = window.innerWidth <= 630;
       setIsMobile(isMobileScreen);
+      
 
       // Close drawer if switching to a larger screen
       if (!isMobileScreen && drawerVisible) {
