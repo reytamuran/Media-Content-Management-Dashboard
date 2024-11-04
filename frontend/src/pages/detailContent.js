@@ -5,6 +5,7 @@ import { useParams, Link, useNavigate } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
 import { deleteItem } from '../redux/actions';
 import { getMediaItem, deleteMediaItem } from '../services/api';
+import './detailContent.css';
 
 function DetailContent() {
   const { id } = useParams();
@@ -23,8 +24,6 @@ function DetailContent() {
         setError("Failed to load content details. Please try again.");
       });
   }, [id]);
-  console.log(`Fetching item at URL: http://localhost:5002/api/items/${id}`);
-
 
   const handleDelete = async () => {
     try {
@@ -41,30 +40,37 @@ function DetailContent() {
   if (!item) return <p>Loading...</p>;
 
   return (
-    <div style={{ maxWidth: '600px', margin: 'auto', padding: '20px', border: '1px solid #ddd', borderRadius: '8px', boxShadow: '0px 4px 8px rgba(0, 0, 0, 0.1)' }}>
-      <h1>{item.title}</h1>
+    <div className="detail-container">
+      <div className="detail-thumbnail-info">
+        {/* Left side: Thumbnail */}
+        <div className="detail-thumbnail-section">
+          {item.thumbnail && (
+            <img
+              src={item.thumbnail.startsWith('/uploads/') ? `http://localhost:5002${item.thumbnail}` : item.thumbnail}
+              alt="Thumbnail"
+              className="detail-thumbnail"
+            />
+          )}
+        </div>
 
-      {/* Display thumbnail if available */}
-      {item.thumbnail && (
-        <img
-          src={item.thumbnail.startsWith('/uploads/') ? `http://localhost:5002${item.thumbnail}` : item.thumbnail}
-          alt="Thumbnail"
-          style={{ width: '100%', height: 'auto', borderRadius: '8px', marginBottom: '20px' }}
-        />
-      )}
+        {/* Right side: Details */}
+        <div className="detail-info-section">
+          <h1 className="detail-title">{item.title}</h1>
+          <p className="detail-text"><strong>Description:</strong> {item.description}</p>
+          <p className="detail-text"><strong>Genre:</strong> {item.genre}</p>
+          <p className="detail-text"><strong>Status:</strong> {item.status}</p>
+          <p className="detail-text"><strong>Upload Date:</strong> {item.uploadDate}</p>
+        </div>
+      </div>
 
-      <p><strong>Description:</strong> {item.description}</p>
-      <p><strong>Genre:</strong> {item.genre}</p>
-      <p><strong>Status:</strong> {item.status}</p>
-      <p><strong>Upload Date:</strong> {item.uploadDate}</p>
-
-      <div style={{ display: 'flex', justifyContent: 'space-between', marginTop: '20px' }}>
-        <Link to={`/content/edit/${id}`} style={{ textDecoration: 'none', color: '#1677ff' }}>
-          <button style={{ padding: '10px 20px', backgroundColor: '#1677ff', color: 'white', border: 'none', borderRadius: '4px' }}>Edit</button>
+      {/* Buttons below content */}
+      <div className="detail-buttons">
+        <Link to={`/content/edit/${id}`} style={{ textDecoration: 'none' }}>
+          <button className="detail-button detail-button-edit">Edit</button>
         </Link>
         <button
           onClick={handleDelete}
-          style={{ padding: '10px 20px', backgroundColor: '#d9534f', color: 'white', border: 'none', borderRadius: '4px' }}
+          className="detail-button detail-button-delete"
         >
           Delete
         </button>
