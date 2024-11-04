@@ -28,6 +28,6 @@ Open http://localhost:3000 to view it in your browser.
 ## Development Process
 
 
- ### { username: 'admin', password: 'password' },
- ###  { username: 'reyta', password: 'reyta' },
- ### { username: 'deneme', password: 'deneme' },
+ ### '{ username: 'admin', password: 'password' }
+   { username: 'reyta', password: 'reyta' },
+  { username: 'deneme', password: 'deneme' }'
