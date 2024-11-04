@@ -94,7 +94,7 @@ function Header() {
 
         {/* Desktop Links Column - Only on medium and larger screens */}
         {!isLoginPage && !isMobile && (
-          <Col xs={0} sm={12} md={8} style={{ display: 'flex', justifyContent: 'center', gap: '20px', alignItems: 'center' }}>
+          <Col xs={0} sm={12} md={9} style={{ display: 'flex', justifyContent: 'center', gap: '20px', alignItems: 'center' }}>
             <Button type="link" style={{ color: 'black' }}>
               <Link to="/content-listing">Home</Link>
             </Button>

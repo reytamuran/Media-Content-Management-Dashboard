@@ -2,11 +2,11 @@
 
 import React, { useRef, useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { setItems, logout } from '../redux/actions';
+import { setItems } from '../redux/actions';
 import { getMediaItems } from '../services/api';
-import { Link, useNavigate } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import { SearchOutlined } from '@ant-design/icons';
-import { Button, Input, Space, Table, Card, Row, Col } from 'antd';
+import { Button, Input, Space, Table, Card} from 'antd';
 import Highlighter from 'react-highlight-words';
 import './contentListing.css';
 
@@ -103,8 +103,8 @@ function ContentListing() {
           style={{ width: '100px', height: 'auto' }}
         />
       ),
-      responsive: ['lg'],
-    },    
+      responsive: ['lg'], // Show on large screens only
+    },
     {
       title: 'Title',
       dataIndex: 'title',
@@ -116,7 +116,28 @@ function ContentListing() {
       dataIndex: 'description',
       key: 'description',
       ...getColumnSearchProps('description'),
-      responsive: ['md'],
+      responsive: ['lg'], // Show on large screens only
+    },
+    {
+      title: 'Genre',
+      dataIndex: 'genre',
+      key: 'genre',
+      filters: [
+        { text: 'Drama', value: 'Drama' },
+        { text: 'Comedy', value: 'Comedy' },
+        { text: 'Mystery', value: 'Mystery' },
+        { text: 'Documentary', value: 'Documentary' },
+      ],
+      onFilter: (value, record) => record.genre === value,
+      responsive: ['lg'], // Show on large screens only
+    },
+    {
+      title: 'Upload Date',
+      dataIndex: 'uploadDate',
+      key: 'uploadDate',
+      sorter: (a, b) => new Date(a.uploadDate) - new Date(b.uploadDate),
+      render: (text) => new Date(text).toLocaleDateString(),
+      responsive: ['md'], // Show on large screens only
     },
     {
       title: 'Status',
@@ -127,7 +148,7 @@ function ContentListing() {
         { text: 'Draft', value: 'Draft' },
       ],
       onFilter: (value, record) => record.status === value,
-
+      responsive: ['md'], // Show on medium and large screens only
     },
     {
       title: 'Actions',
@@ -140,6 +161,7 @@ function ContentListing() {
       ),
     },
   ];
+
 
   return (
     <div className="content-listing">

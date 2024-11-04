@@ -17,6 +17,8 @@ function CreateEditContent() {
     status: 'Draft',
     thumbnail: null,
   });
+  const [thumbnailPreview, setThumbnailPreview] = useState(null);
+  const [errors, setErrors] = useState({});
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
@@ -24,25 +26,62 @@ function CreateEditContent() {
     if (id) {
       getMediaItem(id)
         .then(response => {
+          const item = response.data;
           setForm({
-            ...response.data,
+            ...item,
             thumbnail: null,
           });
+          const thumbnailUrl = item.thumbnail.startsWith('/uploads/')
+            ? `http://localhost:5002${item.thumbnail}`
+            : item.thumbnail;
+          setThumbnailPreview(thumbnailUrl);
         })
-        .catch(console.error);
+        .catch(err => console.error("Error fetching media item:", err));
+    } else {
+      setForm({
+        title: '',
+        description: '',
+        genre: 'Drama',
+        uploadDate: '',
+        status: 'Draft',
+        thumbnail: null,
+      });
+      setThumbnailPreview(null);
     }
   }, [id]);
 
-  const handleChange = e => {
+  const handleChange = (e) => {
     const { name, value } = e.target;
     setForm({ ...form, [name]: value });
+    setErrors({ ...errors, [name]: '' });
   };
 
-  const handleFileChange = e => {
-    setForm({ ...form, thumbnail: e.target.files[0] });
+  const handleFileChange = (e) => {
+    const file = e.target.files[0];
+    setForm({ ...form, thumbnail: file });
+    setThumbnailPreview(URL.createObjectURL(file));
+    setErrors({ ...errors, thumbnail: '' });
+  };
+
+  const validateForm = (status) => {
+    const newErrors = {};
+    if (!form.title) newErrors.title = "Title is required.";
+
+    if (status === "Published") {
+      if (!form.description) newErrors.description = "Description is required for publishing.";
+      if (!form.uploadDate) newErrors.uploadDate = "Upload Date is required for publishing.";
+      if (!form.thumbnail) newErrors.thumbnail = "Thumbnail is required for publishing.";
+    }
+    
+    setErrors(newErrors);
+    return Object.keys(newErrors).length === 0;
   };
 
   const handleSubmit = async (status) => {
+    if (!validateForm(status)) {
+      return;
+    }
+
     try {
       const formData = new FormData();
       formData.append('title', form.title);
@@ -68,9 +107,18 @@ function CreateEditContent() {
     }
   };
 
+  // Handle cancel button click
+  const handleCancel = () => {
+    if (id) {
+      navigate(`/content/${id}`); // Go to details page if in edit mode
+    } else {
+      navigate('/content-listing'); // Go to content listing page if in create mode
+    }
+  };
+
   return (
     <div className="container-edit">
-      <h1 className="heading">{id ? 'Edit' : 'Create'} Media Content</h1>
+      <h1 className="heading">{id ? 'Edit' : 'Create'} Item Content</h1>
       <form onSubmit={(e) => e.preventDefault()} className="form">
         <label className="label">Title</label>
         <input
@@ -82,6 +130,8 @@ function CreateEditContent() {
           required
           className="input"
         />
+        {errors.title && <p className="error">{errors.title}</p>}
+        
         <label className="label">Description</label>
         <textarea
           name="description"
@@ -91,6 +141,8 @@ function CreateEditContent() {
           required
           className="textarea"
         />
+        {errors.description && <p className="error">{errors.description}</p>}
+        
         <label className="label">Genre</label>
         <select
           name="genre"
@@ -104,6 +156,7 @@ function CreateEditContent() {
           <option value="Mystery">Mystery</option>
           <option value="Documentary">Documentary</option>
         </select>
+        
         <label className="label">Upload Date</label>
         <input
           type="date"
@@ -113,6 +166,8 @@ function CreateEditContent() {
           required
           className="input"
         />
+        {errors.uploadDate && <p className="error">{errors.uploadDate}</p>}
+        
         <label className="label">Thumbnail</label>
         <input
           type="file"
@@ -121,19 +176,24 @@ function CreateEditContent() {
           accept="image/*"
           className="fileInput"
         />
-        {form.thumbnail && (
+        {errors.thumbnail && <p className="error">{errors.thumbnail}</p>}
+        {thumbnailPreview && (
           <img
-            src={id ? form.thumbnail : URL.createObjectURL(form.thumbnail)}
-            alt="Thumbnail"
+            src={thumbnailPreview}
+            alt="Thumbnail Preview"
             className="thumbnail-edit"
           />
         )}
+        
         <div className="buttonContainer">
           <button type="button" onClick={() => handleSubmit('Draft')} className="button">
             Save as Draft
           </button>
           <button type="button" onClick={() => handleSubmit('Published')} className="publishButton">
             Publish
+          </button>
+          <button type="button" onClick={handleCancel} className="cancelButton">
+            Cancel
           </button>
         </div>
       </form>

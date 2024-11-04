@@ -60,6 +60,9 @@
   display: flex;
   justify-content: space-between;
   margin-top: 20px;
+  flex-wrap: wrap; /* Allow wrapping on smaller screens */
+  gap: 10px; /* Space between buttons */
+
 }
 
 .button {
@@ -80,4 +83,36 @@
   border: none;
   border-radius: 4px;
   cursor: pointer;
+}
+
+.error {
+  color: red;
+  font-size: 0.9em;
+  margin-top: -10px;
+  margin-bottom: 10px;
+}
+
+.cancelButton {
+  padding: 10px 20px;
+  font-size: 1em;
+  background-color: #6c757d; /* Grey color for cancel button */
+  color: white;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+@media (max-width: 600px) {
+  .button,
+  .publishButton,
+  .cancelButton {
+    width: 100%; /* Make buttons full-width */
+    font-size: 0.9em; /* Slightly smaller font size */
+    padding: 8px 10px; /* Smaller padding */
+  }
+
+  .buttonContainer {
+    flex-direction: column;
+    align-items: stretch;
+  }
 }
