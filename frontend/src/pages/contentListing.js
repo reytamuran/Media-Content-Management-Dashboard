@@ -1,5 +1,3 @@
-// src/pages/ContentListing.js
-
 import React, { useRef, useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { setItems } from '../redux/actions';
@@ -103,7 +101,7 @@ function ContentListing() {
           style={{ width: '100px', height: 'auto' }}
         />
       ),
-      responsive: ['lg'], // Show on large screens only
+      responsive: ['lg'],
     },
     {
       title: 'Title',
@@ -116,7 +114,7 @@ function ContentListing() {
       dataIndex: 'description',
       key: 'description',
       ...getColumnSearchProps('description'),
-      responsive: ['lg'], // Show on large screens only
+      responsive: ['lg'], 
     },
     {
       title: 'Genre',
@@ -129,7 +127,7 @@ function ContentListing() {
         { text: 'Documentary', value: 'Documentary' },
       ],
       onFilter: (value, record) => record.genre === value,
-      responsive: ['lg'], // Show on large screens only
+      responsive: ['lg'], 
     },
     {
       title: 'Upload Date',
@@ -137,7 +135,7 @@ function ContentListing() {
       key: 'uploadDate',
       sorter: (a, b) => new Date(a.uploadDate) - new Date(b.uploadDate),
       render: (text) => new Date(text).toLocaleDateString(),
-      responsive: ['md'], // Show on large screens only
+      responsive: ['md'], 
     },
     {
       title: 'Status',
@@ -148,7 +146,7 @@ function ContentListing() {
         { text: 'Draft', value: 'Draft' },
       ],
       onFilter: (value, record) => record.status === value,
-      responsive: ['md'], // Show on medium and large screens only
+      responsive: ['md'], 
     },
     {
       title: 'Actions',

@@ -1,5 +1,3 @@
-// src/pages/CreateEditContent.js
-
 import React, { useState, useEffect } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
@@ -107,7 +105,7 @@ function CreateEditContent() {
     }
   };
 
-  // Handle cancel button click
+
   const handleCancel = () => {
     if (id) {
       navigate(`/content/${id}`); // Go to details page if in edit mode

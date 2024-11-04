@@ -30,9 +30,9 @@ Open http://localhost:3000 to view it in your browser.
 
 * Throughout the project, I used in-memory data. There are three users available for login. Access to other pages is not possible without logging in. Therefore, only the logo is visible in the header.
 
- ### { username: 'admin', password: 'password' }
- ### { username: 'reyta', password: 'reyta' }
- ### { username: 'deneme', password: 'deneme' }
+ **{ username: 'admin', password: 'password' }**
+ **{ username: 'reyta', password: 'reyta' }**
+ **{ username: 'deneme', password: 'deneme' }**
 
 
 * When the user logs in, the Content List appears. Here, you can see a table with 25 entries of dummy data, which I generated randomly using ChatGPT. 
@@ -42,3 +42,4 @@ Open http://localhost:3000 to view it in your browser.
 * If you click on logout, you will be redirected back to the login page, completing the logout process. 
 
 * I could have written the HTTP code more easily using the Express library. However, I chose not to use a library I hadn’t worked with before given the limited time.
+* I focused on functionality rather than design.

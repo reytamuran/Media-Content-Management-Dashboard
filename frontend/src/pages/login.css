@@ -1,10 +1,9 @@
-/* General Page Styling */
 .login-page {
   display: flex;
   align-items: center;
   justify-content: center;
   height: 100vh;
-  background-image: url('https://admongrel.com/img/bg.png'); /* Add your background image path here */
+  background-image: url('https://admongrel.com/img/bg.png'); 
   background-size: cover;
   background-position: center;
   color: #ffffff;
@@ -13,22 +12,19 @@
   overflow: hidden;
 }
 
-
-/* Login Form Container */
 .login-form {
   position: relative;
   z-index: 2;
-  background-color: rgba(255, 255, 255, 0.1); /* Semi-transparent glass effect */
+  background-color: rgba(255, 255, 255, 0.1);
   backdrop-filter: blur(8px);
   padding: 2rem;
   border-radius: 12px;
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
   width: 300px;
-  max-width: 90%; /* Responsive max width */
+  max-width: 90%; 
   text-align: center;
 }
 
-/* Title Styling */
 .login-form h1 {
   font-size: 1.8rem;
   margin-bottom: 1.5rem;
@@ -36,10 +32,9 @@
   font-weight: bold;
 }
 
-/* Input Styling */
 .login-form input {
   width: 100%;
-  max-width: 250px; /* Limit the width of input fields */
+  max-width: 250px; 
   padding: 0.75rem;
   margin: 0.75rem auto;
   border: none;
@@ -58,10 +53,9 @@
   background-color: #f0f0f0;
 }
 
-/* Button Styling */
 .login-form button {
   width: 100%;
-  max-width: 250px; /* Limit the width of the button as well */
+  max-width: 250px; 
   padding: 0.75rem;
   margin-top: 1rem;
   border: none;
@@ -82,7 +76,6 @@
   background-color: #0d4d91;
 }
 
-/* Mobile Responsiveness */
 @media (max-width: 400px) {
   .login-form {
     width: 90%;

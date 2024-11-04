@@ -13,7 +13,6 @@ const USERS = [
   { username: 'admin', password: 'password' },
   { username: 'reyta', password: 'reyta' },
   { username: 'deneme', password: 'deneme' },
-  // Add more users as needed
 ];
 
 // Ensure thumbnail paths consistency
@@ -77,7 +76,7 @@ const server = http.createServer((req, res) => {
     return;
   }
 
-  // Create a new media item with optional file upload
+  // Create a new item with optional file upload
   if (req.method === 'POST' && pathname === '/api/items') {
     const form = new formidable.IncomingForm();
     form.uploadDir = uploadDir;
@@ -115,14 +114,14 @@ const server = http.createServer((req, res) => {
     return;
   }
 
-  // Get all media items
+  // Get all items
   if (req.method === 'GET' && pathname === '/api/items') {
     res.statusCode = 200;
     res.end(JSON.stringify(dataItems));
     return;
   }
 
-  // Get a specific media item by ID
+  // Get a specific item by ID
   if (req.method === 'GET' && pathname.startsWith('/api/items/')) {
     const id = parseInt(pathname.split('/').pop());
     const dataItem = dataItems.find(item => item.id === id);
@@ -137,7 +136,7 @@ const server = http.createServer((req, res) => {
     return;
   }
 
-  // Update an existing media item
+  // Update an existing item
   if (req.method === 'PUT' && pathname.startsWith('/api/items/')) {
     const id = parseInt(pathname.split('/').pop());
     const index = dataItems.findIndex(item => item.id === id);
@@ -171,7 +170,7 @@ const server = http.createServer((req, res) => {
     return;
   }
 
-  // Delete a media item
+  // Delete an item
   if (req.method === 'DELETE' && pathname.startsWith('/api/items/')) {
     const id = parseInt(pathname.split('/').pop());
     const index = dataItems.findIndex(item => item.id === id);
@@ -187,7 +186,6 @@ const server = http.createServer((req, res) => {
     return;
   }
 
-  // Route not found
   res.statusCode = 404;
   res.end(JSON.stringify({ message: 'Route not found' }));
 });

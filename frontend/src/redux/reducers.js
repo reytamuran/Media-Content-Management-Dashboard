@@ -1,4 +1,3 @@
-// src/redux/reducers.js
 
 import { SET_ITEMS, ADD_ITEM, UPDATE_ITEM, DELETE_ITEM, LOGIN, LOGOUT } from './actionTypes';
 

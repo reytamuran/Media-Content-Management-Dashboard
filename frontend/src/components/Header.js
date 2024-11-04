@@ -31,13 +31,11 @@ function Header() {
   };
 
   useEffect(() => {
-    // Function to handle screen resizing
     const handleResize = () => {
       const isMobileScreen = window.innerWidth <= 630;
       setIsMobile(isMobileScreen);
       
 
-      // Close drawer if switching to a larger screen
       if (!isMobileScreen && drawerVisible) {
         setDrawerVisible(false);
       }

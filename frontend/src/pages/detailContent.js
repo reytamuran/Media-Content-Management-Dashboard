@@ -1,5 +1,3 @@
-// src/pages/DetailContent.js
-
 import React, { useEffect, useState } from 'react';
 import { useParams, Link, useNavigate } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
@@ -42,7 +40,6 @@ function DetailContent() {
   return (
     <div className="detail-container">
       <div className="detail-thumbnail-info">
-        {/* Left side: Thumbnail */}
         <div className="detail-thumbnail-section">
           {item.thumbnail && (
             <img
@@ -53,7 +50,6 @@ function DetailContent() {
           )}
         </div>
 
-        {/* Right side: Details */}
         <div className="detail-info-section">
           <h1 className="detail-title">{item.title}</h1>
           <p className="detail-text"><strong>Description:</strong> {item.description}</p>
@@ -63,7 +59,6 @@ function DetailContent() {
         </div>
       </div>
 
-      {/* Buttons below content */}
       <div className="detail-buttons">
         <Link to={`/content/edit/${id}`} style={{ textDecoration: 'none' }}>
           <button className="detail-button detail-button-edit">Edit</button>
