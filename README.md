@@ -5,7 +5,7 @@
 After cloning the repository, open two terminals: one for the frontend and one for the backend.
 
 
-** For Backend; **
+**For Backend;**
 
 ### `npm install`
 
@@ -15,7 +15,7 @@ This command install all necessary packages.
 
 Your backend server should now be running on http://localhost:5002
 
-** For Frontend; **
+**For Frontend;**
 
 ### `npm install`
 
